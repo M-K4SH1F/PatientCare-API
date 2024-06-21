@@ -59,6 +59,92 @@ The project is a REST API built using Node.js and Express.js, designed to manage
 }
 ```
 
+## Installation
+**1. Clone the repository:**
+```bash
+git clone https://github.com/M-K4SH1F/PatientCare-API.git
+cd PatientCare-API
+```
+
+**2. Install Dependencies:**
+```bash
+npm install
+```
+
+**3. Start the server:**
+```bash
+node index.js
+```
+
+## Usage
+**1. Testing the API:** Use Postman to test the API endpoints. Demonstration clips will be added for better understanding.
+**2. API Endpoints:**
+**- Get Patient Medical Records:**
+```bash
+GET /patients/records
+Headers:
+  dob: <date-of-birth>
+  firstname: <first-name>
+  lastname: <last-name>
+```
+**- Get Detailed Patient Information:**
+```bash
+GET /patients/details
+Headers:
+  dob: <date-of-birth>
+  firstname: <first-name>
+  lastname: <last-name>
+
+```
+**- Create a New Patient:**
+```bash
+POST /patients
+Headers:
+  dob: <date-of-birth>
+  firstname: <first-name>
+  lastname: <last-name>
+  phone: <phone-number>
+  insuranceValid: <true/false>
+
+```
+**- Update Insurance Validity:**
+```bash
+PUT /patients/insurance
+Headers:
+  dob: <date-of-birth>
+  firstname: <first-name>
+  lastname: <last-name>
+Body (JSON):
+  {
+    "insuranceValid": true/false
+  }
+
+```
+
+**- Update Prescription Fill/Refill Status:**
+```bash
+PUT /patients/prescriptions
+Headers:
+  dob: <date-of-birth>
+  firstname: <first-name>
+  lastname: <last-name>
+Body (JSON):
+  {
+    "prescriptionId": <id>,
+    "fillStatus": "Filled/Not Filled",
+    "refills": <number-of-refills>
+  }
+
+```
+**- Delete Patient and Their Records:**
+```bash
+DELETE /patients
+Headers:
+  dob: <date-of-birth>
+  firstname: <first-name>
+  lastname: <last-name>
+
+```
 ## Execution Flow
 **1. Request Handling:** When a request is made, the server uses the defined routes to determine which endpoint should handle the request.
 **2. Validation:** Middleware and endpoint-specific checks ensure that all required data is provided and correct.
