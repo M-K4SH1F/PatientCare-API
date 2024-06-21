@@ -1,123 +1,94 @@
 # PatientCare API
 
-PatientCare API is a comprehensive RESTful API built using Node.js and Express.js. It is designed to manage patient records in a medical setting, including the creation, retrieval, updating, and deletion of patient information, medical records, prescriptions, and insurance validity.
+## Project Overview
+The project is a REST API built using Node.js and Express.js, designed to manage patient records in a medical setting. It allows for the creation, retrieval, updating, and deletion of patient information, medical records, and prescriptions.
 
-## Features
+## Key Components and Logic
 
-- **Patient Management**: Create, retrieve, update, and delete patient information.
-- **Medical Records**: Manage patient medical records, including their status and detailed medical history.
-- **Prescriptions**: Handle patient prescriptions, including prescription validity, fill/refill status, and refill count.
-- **Insurance**: Track patient insurance validity.
+### Express Setup
+- **Express Framework**: Used to set up the server and handle routing.
+- **Body-Parser Middleware**: Used to parse incoming JSON requests.
 
-## Installation
+### In-Memory Database
+- **Patients**: An object storing patient details indexed by their date of birth (DOB).
+- **Records**: An object storing medical records and prescriptions indexed by patient DOB.
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/M-K4SH1F/PatientCare-API.git
-    cd PatientCare-API
-    ```
+### Middleware
+- **validatePatientRequest**: Ensures that the necessary headers (DOB, first name, and last name) are provided in requests. If any required fields are missing, it sends a 400 Bad Request response.
 
-2. **Install dependencies**:
-    ```bash
-    npm install
-    ```
+### Endpoints
+- **Get Patient Medical Records (`GET /patients/records`)**: Retrieves the medical records for a patient. Validates that the patient exists and that the provided first name and last name match the DOB.
+- **Get Detailed Patient Information (`GET /patients/details`)**: Retrieves comprehensive details about a patient, including their insurance status and prescriptions. Performs the same validations as the medical records endpoint.
+- **Create a New Patient (`POST /patients`)**: Adds a new patient to the database. Validates that all necessary fields are provided and that the patient does not already exist.
+- **Update Patient Phone Number (`PUT /patients/phone`)**: Updates the phone number for an existing patient. Validates the patient's existence and that the provided first name and last name match the DOB.
+- **Update Insurance Validity (`PUT /patients/insurance`)**: Updates the insurance validity status for a patient. Validates that the patient exists and that the provided first name and last name match the DOB.
+- **Update Prescription Fill/Refill Status (`PUT /patients/prescriptions`)**: Updates the fill status and refill count of a specific prescription for a patient. Validates the patient's existence, the prescription's existence, and that the provided first name and last name match the DOB.
+- **Delete Patient and Their Records (`DELETE /patients`)**: Deletes a patient and their associated medical records from the database. Validates the patient's existence and that the provided first name and last name match the DOB.
 
-## Usage
+### Error Handling
+- **400 Bad Request**: Returned when required fields are missing from the request.
+- **401 Unauthorized**: Returned when the provided first name and last name do not match the DOB.
+- **404 Not Found**: Returned when a patient, medical record, or prescription does not exist.
+- **409 Conflict**: Returned when attempting to create a patient that already exists.
 
-1. **Start the server**:
-    ```bash
-    node index.js
-    ```
-    Or, if you prefer using `nodemon` for automatic restarts:
-    ```bash
-    nodemon index.js
-    ```
+### Example Data Structures
 
-2. **API Endpoints**:
+#### Patients Object
+```javascript
+{
+    "2000-01-01": { firstName: "Ichigo", lastName: "Kurosaki", phone: "506-787-7171", insuranceValid: true },
+    "1995-05-05": { firstName: "Satoru", lastName: "Gojo", phone: "506-282-0001", insuranceValid: false }
+}
+```
+#### Records Object
+```javascript
+{
+    "2000-01-01": {
+        status: "Healthy",
+        prescriptions: [
+            { id: 1, name: "Medicine A", validTill: "2024-12-31", fillStatus: "Filled", refills: 2 },
+            { id: 2, name: "Medicine B", validTill: "2023-06-30", fillStatus: "Not Filled", refills: 0 }
+        ]
+    },
+    "1995-05-05": {
+        status: "Sick",
+        prescriptions: [
+            { id: 1, name: "Medicine C", validTill: "2023-09-30", fillStatus: "Filled", refills: 1 }
+        ]
+    }
+}
+```
 
-    - **Get Patient Medical Records**:
-        ```bash
-        GET /patients/records
-        Headers:
-          dob: <date-of-birth>
-          firstname: <first-name>
-          lastname: <last-name>
-        ```
+## Execution Flow
+**1. Request Handling:** When a request is made, the server uses the defined routes to determine which endpoint should handle the request.
+**2. Validation:** Middleware and endpoint-specific checks ensure that all required data is provided and correct.
+**3. Data Manipulation:** Based on the request type (GET, POST, PUT, DELETE), the server either retrieves, adds, updates, or deletes data from the in-memory database.
+**4. Response:** The server sends an appropriate response, including status codes and any requested data or error messages.
 
-    - **Get Detailed Patient Information**:
-        ```bash
-        GET /patients/details
-        Headers:
-          dob: <date-of-birth>
-          firstname: <first-name>
-          lastname: <last-name>
-        ```
+This setup provides a clear and organized way to manage patient data, ensuring that only valid requests are processed and that detailed information about patients can be efficiently retrieved and updated.
 
-    - **Create a New Patient**:
-        ```bash
-        POST /patients
-        Headers:
-          dob: <date-of-birth>
-          firstname: <first-name>
-          lastname: <last-name>
-          phone: <phone-number>
-          insuranceValid: <true/false>
-        ```
-
-    - **Update Patient Phone Number**:
-        ```bash
-        PUT /patients/phone
-        Headers:
-          dob: <date-of-birth>
-          firstname: <first-name>
-          lastname: <last-name>
-        Body (JSON):
-          {
-            "phone": "<new-phone-number>"
-          }
-        ```
-
-    - **Update Insurance Validity**:
-        ```bash
-        PUT /patients/insurance
-        Headers:
-          dob: <date-of-birth>
-          firstname: <first-name>
-          lastname: <last-name>
-        Body (JSON):
-          {
-            "insuranceValid": true/false
-          }
-        ```
-
-    - **Update Prescription Fill/Refill Status**:
-        ```bash
-        PUT /patients/prescriptions
-        Headers:
-          dob: <date-of-birth>
-          firstname: <first-name>
-          lastname: <last-name>
-        Body (JSON):
-          {
-            "prescriptionId": <id>,
-            "fillStatus": "Filled/Not Filled",
-            "refills": <number-of-refills>
-          }
-        ```
-
-    - **Delete Patient and Their Records**:
-        ```bash
-        DELETE /patients
-        Headers:
-          dob: <date-of-birth>
-          firstname: <first-name>
-          lastname: <last-name>
-        ```
-
-## Contributing
-
-Contributions are welcome! Please fork this repository and submit a pull request for any enhancements or bug fixes.
+## Demonstration
+I am using **Postman** for testing the API endpoints. Demonstration clips will be added for better understanding.
 
 ## License
+This project is licensed under the MIT License. See the [MIT License.txt](https://github.com/user-attachments/files/15932345/MIT.License.txt) file for details.MIT License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Copyright (c) [2024] [Mohammed Kashif Ahmed]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
