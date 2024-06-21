@@ -157,7 +157,29 @@ Headers:
 This setup provides a clear and organized way to manage patient data, ensuring that only valid requests are processed and that detailed information about patients can be efficiently retrieved and updated.
 
 ## Demonstration
-I am using **Postman** for testing the API endpoints. Demonstration clips will be added for better understanding.
+I am using **Postman** for testing the API endpoints. Demonstration clips are added for better understanding.
+
+**- Get Patient Medical Records:**
+
+
+**- Get Detailed Patient Information:**
+
+
+**- Create a New Patient:**
+
+
+**- Update Patient Phone Number:**
+
+
+**- Update Insurance Validity:**
+
+
+**- Update Prescription Fill/Refill Status:**
+
+
+**- Delete Patient and Their Records:**
+
+
 
 ## License
 This project is licensed under the MIT License. See the [MIT License.txt](https://github.com/user-attachments/files/15932345/MIT.License.txt) file for details.MIT License
