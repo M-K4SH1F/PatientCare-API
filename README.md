@@ -99,12 +99,12 @@ Headers:
 **- Create a New Patient:**
 ```bash
 POST /patients
-Headers:
-  dob: <date-of-birth>
-  firstname: <first-name>
-  lastname: <last-name>
-  phone: <phone-number>
-  insuranceValid: <true/false>
+body:
+  {"dob": "<date-of-birth>"
+  "firstname": "<first-name>"
+ " lastname": "<last-name>"
+  "phone": "<phone-number>"
+  "insuranceValid": <true/false>}
 
 ```
 **- Update Insurance Validity:**
