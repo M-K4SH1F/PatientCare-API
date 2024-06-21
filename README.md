@@ -147,8 +147,11 @@ Headers:
 ```
 ## Execution Flow
 **1. Request Handling:** When a request is made, the server uses the defined routes to determine which endpoint should handle the request.
+
 **2. Validation:** Middleware and endpoint-specific checks ensure that all required data is provided and correct.
+
 **3. Data Manipulation:** Based on the request type (GET, POST, PUT, DELETE), the server either retrieves, adds, updates, or deletes data from the in-memory database.
+
 **4. Response:** The server sends an appropriate response, including status codes and any requested data or error messages.
 
 This setup provides a clear and organized way to manage patient data, ensuring that only valid requests are processed and that detailed information about patients can be efficiently retrieved and updated.
