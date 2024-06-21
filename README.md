@@ -73,7 +73,7 @@ npm install
 
 **3. Start the server:**
 ```bash
-node index.js
+nodemon index.js
 ```
 
 ## Usage
