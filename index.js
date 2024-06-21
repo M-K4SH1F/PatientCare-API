@@ -6,22 +6,22 @@ app.use(bodyParser.json());
 
 // In-memory database for patients and records
 let patients = {
-    "2000-01-01": { firstName: "Ichigo", lastName: "Kurosaki", phone: "506-787-7171", insuranceValid: true },
-    "1995-05-05": { firstName: "Satoru", lastName: "Gojo", phone: "506-282-0001", insuranceValid: false }
+    "2000-01-01": { firstName: "Mohammed Kashif", lastName: "Ahmed", phone: "506-787-7171", insuranceValid: true },
+    "1995-05-05": { firstName: "Spartans", lastName: "Taj Hydrabad", phone: "506-282-0001", insuranceValid: false }
 };
 
 let records = {
     "2000-01-01": {
         status: "Healthy",
         prescriptions: [
-            { id: 1, name: "Medicine A", validTill: "2024-12-31", fillStatus: "Filled", refills: 2 },
-            { id: 2, name: "Medicine B", validTill: "2023-06-30", fillStatus: "Not Filled", refills: 0 }
+            { id: 123456, name: "Medicine A", validTill: "2024-12-31", fillStatus: "Filled", refills: 2 },
+            { id: 223311, name: "Medicine B", validTill: "2023-06-30", fillStatus: "Not Filled", refills: 0 }
         ]
     },
     "1995-05-05": {
         status: "Sick",
         prescriptions: [
-            { id: 1, name: "Medicine C", validTill: "2023-09-30", fillStatus: "Filled", refills: 1 }
+            { id: 213213, name: "Medicine C", validTill: "2023-09-30", fillStatus: "Filled", refills: 1 }
         ]
     }
 };
@@ -80,7 +80,7 @@ app.get("/patients/details", validatePatientRequest, (req, res) => {
 
 // Create a new patient
 app.post("/patients", (req, res) => {
-    const { dob, firstname, lastname, phone, insuranceValid } = req.headers;
+    const { dob, firstname, lastname, phone, insuranceValid } = req.body;
     if (!dob || !firstname || !lastname || !phone || insuranceValid === undefined) {
         return res.status(400).json({ error: "DOB, firstname, lastname, phone, and insurance validity are required" });
     }
@@ -88,7 +88,7 @@ app.post("/patients", (req, res) => {
         return res.status(409).json({ error: "Patient with this DOB already exists" });
     }
 
-    patients[dob] = { firstName: firstname, lastName: lastname, phone, insuranceValid: insuranceValid === 'true' };
+    patients[dob] = { firstName: firstname, lastName: lastname, phone, insuranceValid: insuranceValid };
     res.status(201).json(patients[dob]);
 });
 
