@@ -31,6 +31,9 @@ The project is a REST API built using Node.js and Express.js, designed to manage
 - **404 Not Found**: Returned when a patient, medical record, or prescription does not exist.
 - **409 Conflict**: Returned when attempting to create a patient that already exists.
 
+### Logic Diagram
+![PatientCare API Logic Diagram](https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/4587208b-545a-41df-ba6b-c2eed017bd27)
+
 ### Example Data Structures
 
 #### Patients Object
