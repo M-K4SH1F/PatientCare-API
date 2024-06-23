@@ -32,7 +32,7 @@ The project is a REST API built using Node.js and Express.js, designed to manage
 - **409 Conflict**: Returned when attempting to create a patient that already exists.
 
 ### Logic Diagram
-![PatientCare API Logic Diagram](https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/4587208b-545a-41df-ba6b-c2eed017bd27)
+![PatientCare API Logic Diagram](https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/231dfe9a-062d-47c3-8e46-65c0fb59e962)
 
 ### Architechture Diagram / UML Diagram
 ![PatientCare API UML](https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/85737f17-b1bb-4f41-88e8-573577c4b397)
