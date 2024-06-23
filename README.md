@@ -167,25 +167,31 @@ I am using **Postman** for testing the API endpoints. Demonstration clips are ad
 
 **- Get Patient Medical Records:**
 
+https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/3bd989b5-0a06-47e6-a091-fe805bfa3dac
 
 **- Get Detailed Patient Information:**
 
+https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/34896bd0-852f-4457-81f4-ff6a13ffea50
 
 **- Create a New Patient:**
 
+https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/7728f1c0-e597-4a89-827f-d170f2915ca3
 
 **- Update Patient Phone Number:**
 
+https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/668f702e-f003-4e8f-b9ad-7a38693bc030
 
 **- Update Insurance Validity:**
 
+https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/21b1fd31-8f06-4f33-a3be-2b78f941f66e
 
 **- Update Prescription Fill/Refill Status:**
 
+https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/bc77d5a6-5f38-4b88-af3a-6a90c01d2846
 
 **- Delete Patient and Their Records:**
 
-
+https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/f877173b-c470-43ea-a18b-27371f2fcb77
 
 ## License
 This project is licensed under the MIT License. See the [MIT License.txt](https://github.com/user-attachments/files/15932345/MIT.License.txt) file for details.MIT License
