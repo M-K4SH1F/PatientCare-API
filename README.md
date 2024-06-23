@@ -34,6 +34,9 @@ The project is a REST API built using Node.js and Express.js, designed to manage
 ### Logic Diagram
 ![PatientCare API Logic Diagram](https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/4587208b-545a-41df-ba6b-c2eed017bd27)
 
+### Architechture Diagram / UML Diagram
+![PatientCare API UML](https://github.com/M-K4SH1F/PatientCare-API/assets/159590221/85737f17-b1bb-4f41-88e8-573577c4b397)
+
 ### Example Data Structures
 
 #### Patients Object
